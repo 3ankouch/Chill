@@ -1,0 +1,20 @@
+Name and avatar:
+var owner =" ";// Your account ID here ;)
+client.on("MessageCreate", kmosha => {
+    if(kmosha.content.startsWith(prefix+"setname")){
+        if(kmosha.author.id !== owner) return;
+        var ds=kmosha.content.split(" ").slice(1).join(" ");
+        if(!ds) return kmosha.channel.send("Man, put a new name on it").then(m => m.delete({timeout:5000}));
+        client.user.setUsername(ds);
+        kmosha.channel.send(`The name of the bot has been changed, and the new name is  :  ${ds}`);
+           } else {
+        if(kmosha.content.startsWith(prefix+"setavatar")) {
+            if(kmosha.author.id !== owner) return;
+            let ds=kmosha.content.split(" ")[1];
+            if(!ds) return kmosha.channel.send("Man, put the link to the picture").then(m => m.delete({timeout:5000}));
+        client.user.setAvatar(ds);
+        kmosha.channel.send(`The bot image has been changed successfully`);
+         
+        }
+    }
+}) 
